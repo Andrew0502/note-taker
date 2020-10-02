@@ -23,17 +23,20 @@ app.get("/api/notes", (req, res) => {
 // Specify the route path (should include resource type)
 // Going to post a new object to our database.
 app.post("/api/notes", (req, res) => {  // notes the resource type?
-    console.log(req.body);
-    store.setNotes().then(notes => {
-        res.json(notes)
-    }).catch(error => {
-        res.status(500).json(error);
-    })
-})
+    fs.readFile("./Develop/db/db.json", "utf-8", (error, data) => {
+        if (error) throw error;
+        const parsedNotes = JSON.parse(data);
+        parsedNotes.push(req.body);
+        fs.writeFile("./Develop/db/db.json", JSON.stringify(parsedNotes), (error) => {
+            if (error) throw error;
+            res.json(parsedNotes);
+        });
+    });
+});
 
 app.delete("/api/notes/:id", (req, res) => {
 
-    
+
     // try {
     //     db = db.filter((note) => note.id != req.params );
     //     res.json({message: "your note was delete"});

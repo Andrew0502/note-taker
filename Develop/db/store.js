@@ -8,9 +8,9 @@ class Store {
     read(){
         return readFileAsync("Develop/db/db.json", "utf8");
     }
-    write(){
-        return writeFileAsync("Develop/db/db.json", "utf8"); 
-    }
+    // write(){
+    //     return writeFileAsync("Develop/db/db.json", parseSet); 
+    // }
     getNotes(){
         return this.read().then((notes)=> {
             let parseNotes;
@@ -22,18 +22,17 @@ class Store {
             return parseNotes;
         });
     }
-    setNotes(){
-        return this.write().then((notes)=> {
-        let parseSet;
-        try{
-            parseSet = [].
-            // parseSet = [].concat(JSON.parse(notes))
-        } catch (error){
-            parseSet = []; 
-        }
-        return parseSet;
-        });
-    }
+    // setNotes(){
+    //     return this.write().then((notes)=> {
+    //         var parseSet;
+    //         try{
+    //             parseSet = [].concat(JSON.parse(notes))
+    //         } catch (error){
+    //             parseSet = []; 
+    //         }
+    //         return parseSet;
+    //         });
+    // }
 }
 
 module.exports = new Store();
