@@ -8,6 +8,9 @@ class Store {
     read(){
         return readFileAsync("Develop/db/db.json", "utf8");
     }
+    write(){
+        return writeFileAsync("Develop/db/db.json", "utf8"); 
+    }
     getNotes(){
         return this.read().then((notes)=> {
             let parseNotes;
@@ -19,11 +22,18 @@ class Store {
             return parseNotes;
         });
     }
+    setNotes(){
+        return this.write().then((notes)=> {
+        let parseSet;
+        try{
+            parseSet = [].
+            // parseSet = [].concat(JSON.parse(notes))
+        } catch (error){
+            parseSet = []; 
+        }
+        return parseSet;
+        });
+    }
 }
 
 module.exports = new Store();
-// my mic died again 
-//  i will end it here..
-// lmk how it goes, u can email me or slaack me
-// ?other than that i will xzee you on our next session  :)
-

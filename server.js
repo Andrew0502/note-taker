@@ -16,7 +16,7 @@ app.get("/api/notes", (req, res) => {
         res.json(notes)
     }).catch(error =>{
         res.status(500).json(error);
-    })
+    });
 });
 
 // Use app.post
@@ -24,16 +24,23 @@ app.get("/api/notes", (req, res) => {
 // Going to post a new object to our database.
 app.post("/api/notes", (req, res) => {  // notes the resource type?
     console.log(req.body);
+    store.setNotes().then(notes => {
+        res.json(notes)
+    }).catch(error => {
+        res.status(500).json(error);
+    })
 })
 
 app.delete("/api/notes/:id", (req, res) => {
-    try {
-        const currentID = req.params.id;
-        
-    } 
-    catch (error) {
-        throw error;
-    }
+
+    
+    // try {
+    //     db = db.filter((note) => note.id != req.params );
+    //     res.json({message: "your note was delete"});
+    // } 
+    // catch (error) {
+    //     throw error;
+    // }
 });
 
 app.get("/", (req, res) => { 
